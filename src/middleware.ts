@@ -21,16 +21,11 @@ export async function middleware(request: NextRequest) {
 
   // If NOT logged in and trying to access protected routes → send to home
   if (
-    !token &&
-    (
-      url.pathname.startsWith('/dashboard') ||
-      url.pathname.startsWith('/verify')
-    )
+    !token &&(url.pathname.startsWith('/dashboard'))
   ) {
-    return NextResponse.redirect(new URL('/home', request.url));
+    return NextResponse.redirect(new URL('/sign-in', request.url));
   }
 
-  // Allow request if no redirect rule matched
   return NextResponse.next();
 }
 
