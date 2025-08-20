@@ -4,7 +4,6 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/modal/User";
 import { User } from "next-auth";
 import mongoose from "mongoose";
-import { acceptMessageSchema } from "@/schemas/acceptMessageSchema";
 
 
 export async function GET() {
@@ -27,12 +26,12 @@ export async function GET() {
 
     try {
         const user = await UserModel.aggregate([
-            { $match: {id: userId}},
+            { $match: {_id: userId}},
             { $unwind: '$messages'},
             { $sort: {'messages.createdAt': -1}},
             { $group: {_id: '$_id', messages: { $push: '$messages'}}},
         ])
-
+console.log("Session user:", user);
         if (!user || user.length === 0) {
             return Response.json(
             {
@@ -46,7 +45,7 @@ export async function GET() {
         return Response.json(
             {
                 success: true,
-                acceptMessageSchema: user[0].messages
+                messages: user[0].messages
             },
             { status: 200 }
         )
