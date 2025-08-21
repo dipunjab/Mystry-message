@@ -15,10 +15,10 @@ export async function POST(req: Request) {
             model: model,
             prompt: prompt,
         });
-
+        
         return result.toTextStreamResponse();
     } catch (error) {
         console.error("An unexpected error occurred: ", error);
         throw error;
     }
-}
+}``
