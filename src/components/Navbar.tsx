@@ -22,6 +22,8 @@ const Navbar = () => {
   const handleLoginRedirect = () => {
     setLoading(true);
     router.push("/sign-in");
+    setLoading(false);
+
   };
 
   return (
