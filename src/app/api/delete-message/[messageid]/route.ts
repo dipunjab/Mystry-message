@@ -5,7 +5,10 @@ import UserModel from "@/modal/User";
 import { User } from "next-auth";
 
 
-export async function POST(request: Request, { params }: { params: { messageid: string } }) {
+export async function POST(
+    request: Request,
+    { params }: { params: { messageid: string } }
+) {
     const messageid = params.messageid;
     await dbConnect();
 
