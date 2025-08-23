@@ -7,7 +7,7 @@ import { User } from "next-auth";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { messageid: string } }
+  { params }
 ) {
   const messageid = params.messageid;
   await dbConnect();
