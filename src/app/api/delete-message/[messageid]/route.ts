@@ -5,10 +5,13 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/modal/User";
 import { User } from "next-auth";
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { messageid: string } }
-) {
+interface RouteParams {
+  params: {
+    messageid: string;
+  };
+}
+
+export async function POST(request: NextRequest, { params }: RouteParams) {
   const messageid = params.messageid;
   await dbConnect();
 
